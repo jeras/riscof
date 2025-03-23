@@ -33,7 +33,7 @@ class dutname(pluginTemplate):
             raise SystemExit(1)
 
         # In case of an RTL based DUT, this would be point to the final binary executable of your
-        # test-bench produced by a simulator (like verilator, vcs, incisive, etc). In case of an iss or
+        # test-bench produced by a simulator (like Verilator, VCS, Incisive, etc). In case of an iss or
         # emulator, this variable could point to where the iss binary is located. If 'PATH variable
         # is missing in the config.ini we can hardcode the alternate here.
         self.dut_exe = os.path.join(config['PATH'] if 'PATH' in config else "","dutname")
@@ -46,14 +46,14 @@ class dutname(pluginTemplate):
         # Path to the directory where this python file is located. Collect it from the config.ini
         self.pluginpath=os.path.abspath(config['pluginpath'])
 
-        # Collect the paths to the  riscv-config absed ISA and platform yaml files. One can choose
+        # Collect the paths to the riscv-config based ISA and platform yaml files. One can choose
         # to hardcode these here itself instead of picking it from the config.ini file.
         self.isa_spec = os.path.abspath(config['ispec'])
         self.platform_spec = os.path.abspath(config['pspec'])
 
-        #We capture if the user would like the run the tests on the target or
-        #not. If you are interested in just compiling the tests and not running
-        #them on the target, then following variable should be set to False
+        # We capture if the user would like the run the tests on the target or
+        # not. If you are interested in just compiling the tests and not running
+        # them on the target, then following variable should be set to False
         if 'target_run' in config and config['target_run']=='0':
             self.target_run = False
         else:
@@ -89,7 +89,7 @@ class dutname(pluginTemplate):
       # will be useful in setting integer value in the compiler string (if not already hardcoded);
       self.xlen = ('64' if 64 in ispec['supported_xlen'] else '32')
 
-      # for dutname start building the '--isa' argument. the self.isa is dutnmae specific and may not be
+      # for dutname start building the '--isa' argument. the self.isa is dutname specific and may not be
       # useful for all DUTs
       self.isa = 'rv' + self.xlen
       if "I" in ispec["ISA"]:
@@ -119,7 +119,7 @@ class dutname(pluginTemplate):
       # function earlier
       make.makeCommand = 'make -k -j' + self.num_jobs
 
-      # we will iterate over each entry in the testList. Each entry node will be refered to by the
+      # we will iterate over each entry in the testList. Each entry node will be referred to by the
       # variable testname.
       for testname in testList:
 
@@ -134,7 +134,7 @@ class dutname(pluginTemplate):
           test_dir = testentry['work_dir']
 
           # name of the elf file after compilation of the test
-          elf = 'my.elf'
+          elf = 'dut.elf'
 
           # name of the signature file as per requirement of RISCOF. RISCOF expects the signature to
           # be named as DUT-<dut-name>.signature. The below variable creates an absolute path of

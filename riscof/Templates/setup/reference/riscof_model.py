@@ -18,7 +18,7 @@ logger = logging.getLogger()
 class refname(pluginTemplate):
     __model__ = "refname"
 
-    #TODO: please update the below to indicate family, version, etc of your DUT.
+    #TODO: please update the below to indicate family, version, etc of your reference.
     __version__ = "XXX"
 
     def __init__(self, *args, **kwargs):
@@ -32,7 +32,7 @@ class refname(pluginTemplate):
         self.isa_spec = os.path.abspath(config['ispec']) if 'ispec' in config else ''
         self.platform_spec = os.path.abspath(config['pspec']) if 'ispec' in config else ''
         self.make = config['make'] if 'make' in config else 'make'
-        logger.debug("refname plugin initialised using the following configuration.")
+        logger.debug("refname plugin initialized using the following configuration.")
         for entry in config:
             logger.debug(entry+' : '+config[entry])
         return sclass
@@ -40,7 +40,7 @@ class refname(pluginTemplate):
     def initialise(self, suite, work_dir, archtest_env):
         self.suite = suite
         if shutil.which(self.ref_exe) is None:
-            logger.error('Please install Executable for DUTNAME to proceed further')
+            logger.error('Please install Executable for refname to proceed further')
             raise SystemExit(1)
         self.work_dir = work_dir
 
@@ -103,7 +103,7 @@ class refname(pluginTemplate):
             execute += self.objdump_cmd.format(elf, self.xlen, 'ref.disass')
             sig_file = os.path.join(test_dir, self.name[:-1] + ".signature")
 
-            #TODO: You will need to add any other arguments to your DUT
+            #TODO: You will need to add any other arguments to your reference
             #      executable if any in the quotes below
             execute += self.ref_exe + ''
 

@@ -11,6 +11,10 @@ versioned header while the `WIP-DEV` is left empty
 - Updating CONTRIBUTING.rst to capture the new git strategy adopted to follow a monthly release
 - Fix typo in installation.rst
 - Remove unused pip import in setup.py
+- Documentation: updated build instructions for `sail-riscv` now using CMAKE, updated the name of produced executable
+- Templates:
+  - few spelling mistakes
+  - replaced mentions of DUT from `reference/riscof_model.py`
 
 ## [1.25.3] - 2023-01-24
 - use "make -k" in riscof_model.py template to ensure all test cases run, even after a failure. Fixes #73.
